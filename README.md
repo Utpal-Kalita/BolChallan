@@ -1,6 +1,6 @@
 # BolChallan
 
-Private development prototype for voice-assisted delivery reconciliation. It does not send payments, issue supplier credits, or change an accounting system.
+Development prototype for voice-assisted delivery reconciliation. It does not send payments, issue supplier credits, or change an accounting system.
 
 ## Run
 
