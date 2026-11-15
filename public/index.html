@@ -1,85 +1,176 @@
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>BolChallan - Voice transaction reconciliation</title>
+
 <link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
+
 <header>
-  <div class="header-inner">
-    <h1>BolChallan</h1>
-    <p class="tagline">Voice-based transaction reconciliation for small businesses</p>
-    <p class="privacy">Recordings are stored only with your explicit consent, on this workspace, and can be deleted anytime from the history below. Transcription uses Gnani Prisma and confirmations use Gnani Timbre when live mode is enabled. All quantity and money math is deterministic code - never guessed by a model.</p>
-  </div>
+
+<div class="header-inner">
+
+<h1>BolChallan</h1>
+
+<p class="tagline">Voice-based transaction reconciliation for small businesses</p>
+
+<p class="privacy">Recordings are stored only with your explicit consent, on this workspace, and can be deleted anytime from the history below. Transcription uses Gnani Prisma and confirmations use Gnani Timbre when live mode is enabled. All quantity and money math is deterministic code - never guessed by a model.</p>
+
+</div>
+
 </header>
 
+
+
+
 <main>
-  <section class="card" id="invoice-section">
-    <h2><span class="step">1</span> Create invoice</h2>
-    <div class="row form-row">
-      <input id="inv-product" class="grow" placeholder="Product (e.g. Biscuit carton)">
-      <input id="inv-qty" type="number" min="0" step="any" placeholder="Qty">
-      <input id="inv-unit" placeholder="Unit (packet/kg)">
-      <input id="inv-price" type="number" min="0" step="any" placeholder="Unit price (Rs)">
-      <input id="inv-party" class="grow" placeholder="Party (retailer)">
-      <button id="create-invoice">Add invoice</button>
-    </div>
-    <ul id="invoice-list" class="item-list"></ul>
-  </section>
 
-  <section class="card" id="voice-section">
-    <h2><span class="step">2</span> Add delivery voice note</h2>
-    <div class="row">
-      <select id="vn-invoice" class="grow"></select>
-    </div>
-    <div class="row">
-      <label class="consent"><input type="checkbox" id="vn-consent"> I consent to this recording being stored and transcribed for reconciliation.</label>
-    </div>
-    <div class="row">
-      <label>Audio file (optional in dry-run): <input type="file" id="vn-audio" accept="audio/*"></label>
-    </div>
-    <div class="row">
-      <textarea id="vn-transcript" class="grow" rows="3" placeholder="...or paste/type the transcript (dry-run mode), e.g. Bees packet bheje the, lekin dukaan wale ne atharah receive kiya. Do packet damaged the."></textarea>
-    </div>
-    <div class="row">
-      <button id="submit-voice">Transcribe + reconcile</button>
-      <button id="load-scenario" type="button" class="secondary">Load demo scenario</button>
-    </div>
-  </section>
+<section class="card" id="invoice-section">
 
-  <section class="card" id="result-section" hidden>
-    <h2><span class="step">3</span> Reconciliation result</h2>
-    <div id="result"></div>
-    <div id="clar-answer-block" hidden>
-      <label for="clar-answer">Your answer / confirmation:</label>
-      <div class="row">
-        <input id="clar-answer" class="grow" placeholder="e.g. Haan, do packet damaged the.">
-        <button id="submit-answer" class="secondary">Submit answer</button>
-      </div>
-    </div>
-    <div id="review-block" hidden>
-      <h3>Review the physical counts and credits</h3>
-      <p>Do not treat damaged units as missing. Received total includes damaged units. Final payment uses verified good units only after you accept any credits.</p>
-      <div class="row"><label>Total arrived <input id="review-total" type="number" min="0" step="any"></label><label>Good <input id="review-good" type="number" min="0" step="any"></label><label>Damaged <input id="review-damaged" type="number" min="0" step="any"></label></div>
-      <p><label><input type="checkbox" id="review-shortage-credit"> I accept a credit for missing units (if any).</label></p>
-      <p><label><input type="checkbox" id="review-damage-credit"> I accept a credit for damaged units (if any).</label></p>
-      <button id="review-save">Verify this breakdown</button>
-    </div>
-    <div class="row">
-      <button id="confirm-rec">Confirm reconciliation</button>
-      <button id="tts-prompt" class="secondary">Play confirmation prompt (TTS)</button>
-    </div>
-    <audio id="tts-audio" controls hidden></audio>
-  </section>
+<h2><span class="step">1</span> Create invoice</h2>
 
-  <section class="card" id="history-section">
-    <h2><span class="step">4</span> Transaction history</h2>
-    <ul id="history-list" class="item-list"></ul>
-  </section>
+<div class="row form-row">
+
+<input id="inv-product" class="grow" placeholder="Product (e.g. Biscuit carton)">
+
+<input id="inv-qty" type="number" min="0" step="any" placeholder="Qty">
+
+<input id="inv-unit" placeholder="Unit (packet/kg)">
+
+<input id="inv-price" type="number" min="0" step="any" placeholder="Unit price (Rs)">
+
+<input id="inv-party" class="grow" placeholder="Party (retailer)">
+
+<button id="create-invoice">Add invoice</button>
+
+</div>
+
+<ul id="invoice-list" class="item-list"></ul>
+
+</section>
+
+
+
+
+<section class="card" id="voice-section">
+
+<h2><span class="step">2</span> Add delivery voice note</h2>
+
+<div class="row">
+
+<select id="vn-invoice" class="grow"></select>
+
+</div>
+
+<div class="row">
+
+<label class="consent"><input type="checkbox" id="vn-consent"> I consent to this recording being stored and transcribed for reconciliation.</label>
+
+</div>
+
+<div class="row">
+
+<label>Audio file (optional in dry-run): <input type="file" id="vn-audio" accept="audio/*"></label>
+
+</div>
+
+<div class="row">
+
+<textarea id="vn-transcript" class="grow" rows="3" placeholder="...or paste/type the transcript (dry-run mode), e.g. Bees packet bheje the, lekin dukaan wale ne atharah receive kiya. Do packet damaged the."></textarea>
+
+</div>
+
+<div class="row">
+
+<button id="submit-voice">Transcribe + reconcile</button>
+
+<button id="load-scenario" type="button" class="secondary">Load demo scenario</button>
+
+</div>
+
+</section>
+
+
+
+
+<section class="card" id="result-section" hidden>
+
+<h2><span class="step">3</span> Reconciliation result</h2>
+
+<div id="result"></div>
+
+<div id="clar-answer-block" hidden>
+
+<label for="clar-answer">Your answer / confirmation:</label>
+
+<div class="row">
+
+<input id="clar-answer" class="grow" placeholder="e.g. Haan, do packet damaged the.">
+
+<button id="submit-answer" class="secondary">Submit answer</button>
+
+</div>
+
+</div>
+
+<div id="review-block" hidden>
+
+<h3>Review the physical counts and credits</h3>
+
+<p>Do not treat damaged units as missing. Received total includes damaged units. Final payment uses verified good units only after you accept any credits.</p>
+
+<div class="row"><label>Total arrived <input id="review-total" type="number" min="0" step="any"></label><label>Good <input id="review-good" type="number" min="0" step="any"></label><label>Damaged <input id="review-damaged" type="number" min="0" step="any"></label></div>
+
+<p><label><input type="checkbox" id="review-shortage-credit"> I accept a credit for missing units (if any).</label></p>
+
+<p><label><input type="checkbox" id="review-damage-credit"> I accept a credit for damaged units (if any).</label></p>
+
+<button id="review-save">Verify this breakdown</button>
+
+</div>
+
+<div class="row">
+
+<button id="confirm-rec">Confirm reconciliation</button>
+
+<button id="tts-prompt" class="secondary">Play confirmation prompt (TTS)</button>
+
+</div>
+
+<audio id="tts-audio" controls hidden></audio>
+
+</section>
+
+
+
+
+<section class="card" id="history-section">
+
+<h2><span class="step">4</span> Transaction history</h2>
+
+<ul id="history-list" class="item-list"></ul>
+
+</section>
+
 </main>
 
+
+
+
 <script src="app.js"></script>
+
 </body>
-        </html>
+
+</html>
+
