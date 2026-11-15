@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BolChallan - Voice Reconciliation for Small Business</title>
+<style>
+  :root {
+    --bg-page: #fbf9f4;
+    --bg-surface: #ffffff;
+    --border-subtle: #e6dfcd;
+    --ink-primary: #1c1917;
+    --ink-secondary: #44403c;
+    --accent: #b45309;
+    --accent-deep: #9a3412;
+    --shadow-card: 0 4px 20px -2px rgba(28, 25, 23, 0.06);
+    --radius-card: 18px;
+    --radius-control: 12px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--ink-primary);
+    line-height: 1.6;
+  }
+
+  a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
+  a:hover { opacity: 0.8; }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+    color: #faf9f7;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 4px solid var(--accent);
+  }
+
+  .header-content {
+    max-width: 68rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    color: #fff7ed;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  /* Main Layout */
+  main {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+    display: grid;
+    gap: 3rem;
+  }
+
+  section h2 {
+    font-size: 1.75rem;
+    font-weight: 750;
+    color: var(--ink-primary);
+    margin: 0 0 1.5rem 0;
+    border-left: 5px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  /* Hero */
+  .hero {
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  .hero h2 {
+    font-size: 3rem;
+    border: none;
+    padding: 0;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .hero-sub {
+    font-size: 1.25rem;
+    color: var(--ink-secondary);
+    max-width: 50rem;
+    margin: 0 auto 2.5rem auto;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    min-height: 54px;
+    padding: 0.75rem 2rem;
+    border-radius: var(--radius-control);
+    font-weight: 650;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(154, 52, 18, 0.25);
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #c2410c 0%, #9a3412 100%);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(154, 52, 18, 0.35);
+  }
+
+  .btn-secondary {
+    background: linear-gradient(135deg, #3f3f46 0%, #27272a 100%);
+    color: #fafaf9;
+    box-shadow: 0 4px 12px rgba(39, 39, 42, 0.25);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(39, 39, 42, 0.35);
+  }
+
+  /* Cards */
+  .card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* The Problem */
+  .problem-content {
+    font-size: 1.15rem;
+    color: var(--ink-secondary);
+    background: #fff8eb;
+    border: 1.5px solid #fde68a;
+    border-radius: var(--radius-control);
+    padding: 1.5rem;
+  }
+  
+  .problem-highlight {
+    display: block;
+    font-weight: 700;
+    color: var(--accent-deep);
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  /* How it works */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    position: relative;
+    padding-top: 3rem;
+  }
+
+  .step-num {
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 800;
+    box-shadow: 0 3px 8px rgba(194, 65, 12, 0.3);
+  }
+
+  .step-card h3 {
+    font-size: 1.4rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--ink-primary);
+  }
+
+  .step-card p {
+    margin: 0;
+    color: var(--ink-secondary);
+    font-size: 1.1rem;
+  }
+
+  /* Limits */
+  .limits-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    color: var(--ink-secondary);
+    font-size: 1rem;
+  }
+
+  .limits-card h3 { color: var(--ink-primary); margin-top: 0; }
+  
+  .limit-list { margin: 0; padding-left: 1.5rem; }
+  .limit-list li { margin-bottom: 0.5rem; }
+
+  /* Footer */
+  footer {
+    margin-top: auto;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--ink-muted, #78716c);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    header { padding: 1.5rem 1rem; }
+    .header-content { flex-direction: column; text-align: center; gap: 0.75rem; }
+    .brand-mark { width: 2.5rem; height: 2.5rem; font-size: 1.1rem; border-radius: 10px; margin: 0 auto;}
+    header h1 { font-size: 1.75rem; }
+    main { padding: 2rem 1rem; gap: 2rem; }
+    .hero h2 { font-size: 2rem; }
+    .hero-sub { font-size: 1.1rem; }
+    .card { padding: 1.5rem; }
+    .step-card { padding-top: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <div class="brand-mark">BC</div>
+    <h1>BolChallan</h1>
+  </div>
+</header>
+
+<main>
+  <section class="hero card">
+    <h2>Voice-based transaction reconciliation for small businesses.</h2>
+    <p class="hero-sub">A delivery voice note becomes a reviewed record: ambiguity flagged, counts verified, and credits explicitly accepted. The public demo reconciles typed transcripts in your browser; the speech-enabled server app stays private.</p>
+    <div class="hero-buttons">
+      <a href="https://bolchallan-demo.adzeo2.workers.dev/" class="btn btn-primary" target="_blank">Try the live demo (transcript-only)</a>
+      <a href="https://bolchallan-video.adzeo2.workers.dev/demo.mp4" class="btn btn-secondary" target="_blank">Watch the demo</a>
+      <a href="https://github.com/Utpal-Kalita/BolChallan" class="btn btn-secondary" target="_blank">View code / run locally</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>The Problem</h2>
+    <div class="problem-content card">
+      Traditional systems struggle with spoken ambiguity. A driver might call in a delivery note saying:
+      <span class="problem-highlight">"18 received, 2 damaged."</span>
+      <p style="margin-top: 1rem; margin-bottom: 0;">Is that 18 total, or 18 good plus 2 damaged (20 total)? The difference changes the final payment amount.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps-grid">
+      <div class="step-card card">
+        <div class="step-num">1</div>
+        <h3>Create invoice</h3>
+        <p>Log outgoing goods: product, quantity, unit price, and retailer (party) details.</p>
+      </div>
+      
+      <div class="step-card card">
+        <div class="step-num">2</div>
+        <h3>Add delivery voice note</h3>
+        <p>Type or paste the delivery transcript. This demo reconciles from text; audio transcription uses Gnani Prisma in a configured server deployment, and consent is required to process any recording.</p>
+      </div>
+      
+      <div class="step-card card">
+        <div class="step-num">3</div>
+        <h3>Reconciliation result</h3>
+        <p>Review the system's interpretation, verify final counts, and explicitly accept any shortage or damage credits.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Honest limits</h2>
+    <div class="card limits-card">
+      <h3>Important Disclaimers</h3>
+      <ul class="limit-list">
+        <li>This is a synthetic, fictional demo environment. No real business data, transactions, or payments are processed.</li>
+        <li>In a configured server deployment, speech transcription uses Gnani Prisma; this demo reconciles from typed transcripts.</li>
+        <li>Voice confirmations use Gnani Timbre in a configured server deployment.</li>
+        <li>All quantity and money math is calculated by deterministic code; it is never guessed or generated by an AI model.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Built for the Gnani internship challenge. Fictional demo data.
+</footer>
+
+</body>
+</html>
